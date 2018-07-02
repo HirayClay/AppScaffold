@@ -17,7 +17,14 @@ class RollingTextView : TextView {
     lateinit var textArray: List<String>
     lateinit var textPainter: Paint
     lateinit var finishedColumn: BitSet
+    /**
+     * set speed(pixel) for every character
+     */
     lateinit var speed: List<Int>
+
+    val rollingRunnable  = Runnable {
+
+    }
 
 
     constructor(context: Context) : this(context, null)
@@ -30,15 +37,16 @@ class RollingTextView : TextView {
         textArray = text.map(::trans).toList()
         textPainter = paint
         finishedColumn = BitSet(textArray.size)
-        initOffSet()
+        initSpeed()
     }
 
-    private fun initOffSet() {
+    private fun initSpeed() {
         var initialCapacity = textArray.size
         speed = ArrayList(initialCapacity)
         for (i in 0..initialCapacity)
             (speed as ArrayList<Int>).add(20-i)
     }
+
 
     fun trans(it: Char): String {
         return it.toString()
@@ -53,10 +61,8 @@ class RollingTextView : TextView {
     }
 
     fun start(){
-        postOnAnimation(rollingRunnable)
+        postOnAnimationDelayed(rollingRunnable,30)
     }
 
-    val rollingRunnable  = Runnable {
 
-    }
 }
