@@ -25,5 +25,9 @@ class MainActivity : AppCompatActivity() {
                 Log.i(TAG, "onCreate: ${textView.top}")
             }
         }
+
+        rolling_text_view.setOnClickListener {
+            rolling_text_view.roll()
+        }
     }
 }
