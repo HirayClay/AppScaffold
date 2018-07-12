@@ -12,22 +12,5 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        Log.i(TAG, "onCreate: ${Environment.getExternalStorageDirectory()}")
-        Log.i(TAG, "onCreate: ${getExternalFilesDir(Environment.DIRECTORY_DOWNLOADS)}")
-        textView.setOnClickListener {
-            if (!done) {
-                Log.i(TAG, "onCreate: ${textView.top}")
-                textView.translationY = 200f
-                done = true
-            } else {
-                textView.requestLayout()
-                textView.bringToFront()
-                Log.i(TAG, "onCreate: ${textView.top}")
-            }
-        }
-
-        rolling_text_view.setOnClickListener {
-            rolling_text_view.roll()
-        }
     }
 }

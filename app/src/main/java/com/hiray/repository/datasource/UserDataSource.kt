@@ -14,7 +14,7 @@ interface UserDataSource {
 }
 
 /**
- * for now only local datasource is implemented,so just query from userDao
+ * 目前只有本地数据交互
  */
 open class UserDataSourceImpl @Inject constructor(var userDao: UserDao) : UserDataSource {
 

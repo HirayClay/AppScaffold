@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="viewmodel"
+            type="com.hiray.mvvm.viewmodel.ItemViewModel"/>
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
-        android:background="@{viewmodel.completed ? @drawable/list_completed_touch_feedback : @drawable/touch_feedback}"
-        android:onClick="@{() -> viewmodel.taskClicked()}"
+        android:onClick="@{() -> viewmodel.itemClicked()}"
         android:orientation="horizontal"
         android:paddingBottom="@dimen/list_item_padding"
         android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -30,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:text="@{viewmodel.titleForList}"
+            android:text="@{viewmodel.text}"
             android:textAppearance="@style/TextAppearance.AppCompat.Title" />
     </LinearLayout>
 </layout>

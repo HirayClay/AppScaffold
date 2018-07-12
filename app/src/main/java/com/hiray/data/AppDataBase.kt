@@ -5,8 +5,6 @@ import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import androidx.work.OneTimeWorkRequestBuilder
-import androidx.work.Worker
 import com.hiray.mvvm.model.User
 import com.hiray.mvvm.model.UserDao
 
@@ -15,13 +13,13 @@ abstract class AppDataBase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
 
-    companion object {
+    companion object SOUL{
         val DATABASE_NAME = "AppScaffoldDataBase"
         @Volatile
         var INSTANCE: AppDataBase? = null
 
         fun getInstance(context: Context): AppDataBase {
-            return INSTANCE ?: synchronized(this) {
+            return INSTANCE ?: synchronized(SOUL) {
                 return INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
             }
         }

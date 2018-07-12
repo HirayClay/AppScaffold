@@ -1,11 +1,15 @@
 package com.hiray.di.component
 
-import android.app.Application
+import com.hiray.data.AppDataBase
 import com.hiray.di.module.AppModule
+import com.hiray.executor.AppExecutor
 import dagger.Component
 
 
 @Component(modules = [AppModule::class])
 interface AppComponent {
-    fun inject(app: Application)
+
+    fun appDatabase():AppDataBase
+
+    fun appExecutor():AppExecutor
 }

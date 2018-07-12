@@ -31,7 +31,7 @@ interface UserDao {
     @Update
     fun updateUsers(users: List<User>)
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     fun addUser(user: User)
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)

@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity(), CallBack {
     }
 
     override fun showMsg(msg: String) {
-
+        Snackbar.make(root_view, msg, LENGTH_SHORT).show()
     }
 }
 
