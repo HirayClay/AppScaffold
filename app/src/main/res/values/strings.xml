@@ -15,6 +15,10 @@
         completions."
     </string>
     <string name="login_success_msg">Login Success !</string>
+    <string name="home">首页</string>
+    <string name="earning">赚钱</string>
+    <string name="student_group">学生会</string>
+    <string name="saving">省钱</string>
 
     <array name="favorite_foods">
         <item>Watermelon</item>
@@ -23,4 +27,8 @@
         <item>Peach</item>
         <item>Orange</item>
     </array>
+    <string name="title_activity_bottom_navigation">BottomNavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

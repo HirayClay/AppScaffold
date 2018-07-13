@@ -15,8 +15,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField("int","THREAD_POOL_SIZE","4")
-
+        vectorDrawables.useSupportLibrary = true
+        buildConfigField("int", "THREAD_POOL_SIZE", "4")
+        buildConfigField("String","BASE_URL","\"http://news-at.zhihu.com/api/2/news/\"")
     }
     buildTypes {
         release {
@@ -31,5 +32,11 @@ android {
 }
 
 //app dependencies
-apply from:file('../deps.gradle')
+apply from: file('../deps.gradle')
 
+dependencies {
+    implementation 'com.android.support:design:27.+'
+    implementation 'com.android.support.constraint:constraint-layout:+'
+    implementation 'com.android.support:support-vector-drawable:27.+'
+    implementation 'com.google.code.gson:gson:2.8.5'
+}

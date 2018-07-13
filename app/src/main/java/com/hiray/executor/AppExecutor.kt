@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import java.util.concurrent.Executor
 import java.util.concurrent.ExecutorService
+import javax.inject.Singleton
 
 
 class AppExecutor(private var executor: ExecutorService) : Executor {

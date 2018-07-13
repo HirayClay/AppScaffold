@@ -1,9 +1,7 @@
 package com.hiray.di.module
 
-import com.hiray.data.AppDataBase
-import com.hiray.di.ActivityScope
-import com.hiray.mvvm.model.UserDao
-import com.hiray.mvvm.viewmodel.LoginViewModel
+import com.hiray.mvvm.model.AppDataBase
+import com.hiray.mvvm.model.entity.UserDao
 import com.hiray.repository.IUserRepository
 import com.hiray.repository.UserRepository
 import com.hiray.repository.datasource.UserDataSource

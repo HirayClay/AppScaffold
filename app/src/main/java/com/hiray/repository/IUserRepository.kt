@@ -1,8 +1,9 @@
 package com.hiray.repository
 
-import com.hiray.mvvm.model.User
+import com.hiray.mvvm.model.entity.User
 import com.hiray.repository.datasource.UserDataSource
 import javax.inject.Inject
+import javax.inject.Singleton
 
 interface IUserRepository {
 
@@ -11,7 +12,6 @@ interface IUserRepository {
     fun deleteUser(userName: String)
     fun saveUser(userName: String, favoriteFruit: String)
 }
-
 open class UserRepository @Inject constructor(var userDataSource: UserDataSource) : IUserRepository {
 
     override fun saveUser(userName: String, favoriteFruit: String) {

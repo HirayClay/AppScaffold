@@ -1,12 +1,12 @@
-package com.hiray.data
+package com.hiray.mvvm.model
 
 import android.arch.persistence.db.SupportSQLiteDatabase
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.content.Context
-import com.hiray.mvvm.model.User
-import com.hiray.mvvm.model.UserDao
+import com.hiray.mvvm.model.entity.User
+import com.hiray.mvvm.model.entity.UserDao
 
 @Database(entities = [(User::class)], version = 1,exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
@@ -19,8 +19,10 @@ abstract class AppDataBase : RoomDatabase() {
         var INSTANCE: AppDataBase? = null
 
         fun getInstance(context: Context): AppDataBase {
-            return INSTANCE ?: synchronized(SOUL) {
-                return INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+            return INSTANCE
+                    ?: synchronized(SOUL) {
+                return INSTANCE
+                        ?: buildDatabase(context).also { INSTANCE = it }
             }
         }
 

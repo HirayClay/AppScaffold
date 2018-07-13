@@ -1,7 +1,6 @@
-package com.hiray.mvvm.model
+package com.hiray.mvvm.model.entity
 
 import android.arch.persistence.room.*
-import retrofit2.http.DELETE
 
 @Entity(tableName = "User")
 data class User(

@@ -2,14 +2,7 @@ package com.hiray.mvvm.viewmodel
 
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableField
+import android.databinding.ObservableInt
 
 
-class ItemViewModel {
-
-    val text = ObservableField<String>("null")
-    val completed = ObservableBoolean(false)
-
-    fun itemClicked() {
-
-    }
-}
+class ItemViewModel(val tip: String, val type: String)

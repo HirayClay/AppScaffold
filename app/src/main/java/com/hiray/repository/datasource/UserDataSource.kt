@@ -1,7 +1,7 @@
 package com.hiray.repository.datasource
 
-import com.hiray.mvvm.model.User
-import com.hiray.mvvm.model.UserDao
+import com.hiray.mvvm.model.entity.User
+import com.hiray.mvvm.model.entity.UserDao
 import javax.inject.Inject
 
 interface UserDataSource {
