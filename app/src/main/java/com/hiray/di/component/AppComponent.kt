@@ -9,9 +9,11 @@ import com.hiray.mvvm.model.AppDataBase
 import com.hiray.di.module.AppModule
 import com.hiray.executor.AppExecutor
 import com.hiray.mvvm.model.RestApi
+import com.hiray.tsl.HttpsConfigProvider
 import dagger.Component
 import javax.inject.Singleton
 
+@AppScope
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
@@ -24,6 +26,8 @@ interface AppComponent {
     fun app():Application
 
     fun appContext():Context
+
+    fun tslProvider():HttpsConfigProvider
 
     fun gson():Gson
 

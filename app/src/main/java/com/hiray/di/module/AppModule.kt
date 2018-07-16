@@ -9,9 +9,11 @@ import com.hiray.mvvm.model.AppDataBase
 import com.hiray.executor.AppExecutor
 import com.hiray.mvvm.model.RestApi
 import com.hiray.mvvm.model.RestApiHelper
+import com.hiray.tsl.HttpsConfigProvider
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
+import dagger.Reusable
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 import javax.inject.Singleton
@@ -30,6 +32,12 @@ class AppModule(var appContext: Application) {
     @Provides
     fun provideContext(): Context {
         return appContext
+    }
+
+    @Singleton
+    @Provides
+    fun sslProvider(): HttpsConfigProvider {
+        return HttpsConfigProvider(appContext)
     }
 
     @Singleton

@@ -3,9 +3,9 @@ package com.hiray.mvvm.model
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.hiray.BuildConfig
+import com.hiray.tsl.HttpsConfigProvider
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,17 +16,18 @@ class RestApiHelper {
     @Inject
     lateinit var gson: Gson
 
+    @Inject
+    lateinit var tslProvider: HttpsConfigProvider
 
      fun create(): RestApi {
-        val okClient = OkHttpClient()
-        okClient.networkInterceptors().add(object : Interceptor {
-            override fun intercept(chain: Interceptor.Chain): Response {
-                val request = chain.request().newBuilder()
-                        .addHeader("deviceId", null)
-                        .build()
-                return chain.proceed(request)
-            }
-
+        val okClient = OkHttpClient.Builder()
+                .sslSocketFactory(tslProvider.sslSocketFactory,tslProvider.trustManager)
+                .build()
+        okClient.networkInterceptors().add(Interceptor { chain ->
+            val request = chain.request().newBuilder()
+                    .addHeader("deviceId", null)
+                    .build()
+            chain.proceed(request)
         })
         return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
