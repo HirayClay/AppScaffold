@@ -2,6 +2,7 @@ package com.hiray.di.component
 
 import android.app.Application
 import android.content.Context
+import android.content.SharedPreferences
 import com.google.gson.Gson
 import com.hiray.App
 import com.hiray.di.AppScope
@@ -13,24 +14,25 @@ import com.hiray.tsl.HttpsConfigProvider
 import dagger.Component
 import javax.inject.Singleton
 
-@AppScope
 @Singleton
 @Component(modules = [AppModule::class])
 interface AppComponent {
-    fun inject(app:App)
+    fun inject(app: App)
 
     fun appDatabase(): AppDataBase
 
-    fun appExecutor():AppExecutor
+    fun appExecutor(): AppExecutor
 
-    fun app():Application
+    fun app(): Application
 
-    fun appContext():Context
+    fun appContext(): Context
 
-    fun tslProvider():HttpsConfigProvider
+//    fun tslProvider():HttpsConfigProvider
 
-    fun gson():Gson
+    fun gson(): Gson
 
-    fun restApi():RestApi
+    fun restApi(): RestApi
+
+    fun sharePref(): SharedPreferences
 
 }

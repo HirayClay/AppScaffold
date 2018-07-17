@@ -12,14 +12,18 @@ import android.arch.persistence.room.*
 @Entity(tableName = "News")
 data class News(var title: String, var url: String, var image: String,
                 var shareUrl: String, var thumbnail: String, var gapPrefix: String,
-                var id: Int)
-
-@Dao
-interface NewsDao {
-
-    @Query("SELECT * FROM NEWS")
-    fun getNews(): List<News>
-
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun saveNews(news: List<News>)
+                var id: Int){
+    override fun toString(): String {
+        return super.toString()
+    }
 }
+
+//@Dao
+//interface NewsDao {
+//
+//    @Query("SELECT * FROM NEWS")
+//    fun getNews(): List<News>
+//
+//    @Insert(onConflict = OnConflictStrategy.IGNORE)
+//    fun saveNews(news: List<News>)
+//}

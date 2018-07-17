@@ -1,6 +1,7 @@
 package com.hiray.mvvm.model
 
 import com.hiray.mvvm.model.entity.News
+import com.hiray.mvvm.model.entity.TopStory
 import io.reactivex.Observable
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -20,6 +21,6 @@ interface RestApi {
     fun fetchNewsBefore(@Path("date") date: String): Observable<Response<News>>
 
     @GET("latest")
-    fun fetchLatestNews(): Observable<Response<News>>
+    fun fetchLatestNews(): Observable<LatestResponse<News,TopStory>>
 
 }

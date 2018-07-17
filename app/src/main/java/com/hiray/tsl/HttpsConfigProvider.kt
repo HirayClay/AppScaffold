@@ -13,8 +13,8 @@ import javax.net.ssl.*
 
 class HttpsConfigProvider constructor(var appContext: Context) {
 
-    lateinit var trustManager: X509TrustManager
-    lateinit var sslSocketFactory: SSLSocketFactory
+    var trustManager: X509TrustManager
+    var sslSocketFactory: SSLSocketFactory
 
     init {
         trustManager = createTrustManager()
