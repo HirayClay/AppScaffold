@@ -33,7 +33,7 @@ class LatestResponse<T, R>(@SerializedName("news") var t: List<T>,
                            @SerializedName("is_today") var today: Boolean)
 
 class Response<T>(var date: String,
-                  @SerializedName("stories") var stories: List<T>
+                  @SerializedName("news") var stories: List<T>
 )
 
 
