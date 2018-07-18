@@ -10,20 +10,21 @@ import android.arch.persistence.room.*
     ga_prefix: "071317",
     id: 9689524*/
 @Entity(tableName = "News")
-data class News(var title: String, var url: String, var image: String,
+data class News(var title: String, var url: String, var image: String?,
+                var images: List<String>?,
                 var shareUrl: String, var thumbnail: String, var gapPrefix: String,
-                var id: Int){
+                var id: Int) {
     override fun toString(): String {
         return super.toString()
     }
 }
 
-//@Dao
-//interface NewsDao {
-//
-//    @Query("SELECT * FROM NEWS")
-//    fun getNews(): List<News>
-//
-//    @Insert(onConflict = OnConflictStrategy.IGNORE)
-//    fun saveNews(news: List<News>)
-//}
+@Dao
+interface NewsDao {
+
+    @Query("SELECT * FROM NEWS")
+    fun getNews(): List<News>
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    fun saveNews(news: List<News>)
+}

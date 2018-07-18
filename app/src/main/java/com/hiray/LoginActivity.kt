@@ -1,5 +1,7 @@
 package com.hiray
 
+import android.content.Context
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
@@ -18,6 +20,12 @@ import javax.inject.Inject
  * A login screen that offers login via email/password.
  */
 class LoginActivity : AppCompatActivity(), CallBack {
+
+    companion object {
+        fun start(context: Context) {
+            context.startActivity(Intent(context, LoginActivity::class.java))
+        }
+    }
 
     @Inject
     lateinit var loginViewModel: LoginViewModel

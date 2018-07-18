@@ -8,6 +8,7 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Environment
 import android.support.v4.content.ContextCompat
+import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
@@ -30,6 +31,18 @@ class MainActivity : AppCompatActivity() {
         mainBinding.recyclerView.addItemDecoration(DividerItemDecoration())
         mainBinding.viewmodel = mainViewModel
         mainBinding.executePendingBindings()
+
+        val toggle = ActionBarDrawerToggle(
+                this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer_layout.addDrawerListener(toggle);
+        toggle.syncState()
+
+        nav_view.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.menu_item_login -> LoginActivity.start(this)
+            }
+            true
+        }
     }
 
     override fun onResume() {
@@ -57,6 +70,12 @@ class MainActivity : AppCompatActivity() {
                 mDivider.draw(c)
             }
         }
+    }
+
+    interface UserLoginListener {
+
+        fun onUserLogin()
+        fun onUserLogout()
     }
 }
 

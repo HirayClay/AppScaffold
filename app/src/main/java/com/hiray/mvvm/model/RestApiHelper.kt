@@ -3,15 +3,14 @@ package com.hiray.mvvm.model
 import com.google.gson.Gson
 import com.google.gson.annotations.SerializedName
 import com.hiray.BuildConfig
-import com.hiray.R
-import com.hiray.tsl.HttpsConfigProvider
+import com.hiray.tsl.TslProvider
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Inject
 
-class RestApiHelper @Inject constructor(var gson: Gson, var tslProvider: HttpsConfigProvider) {
+class RestApiHelper @Inject constructor(var gson: Gson, var tslProvider: TslProvider) {
 
 
     fun create(): RestApi {

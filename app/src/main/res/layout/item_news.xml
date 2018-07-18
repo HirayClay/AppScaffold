@@ -12,11 +12,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="?android:attr/listPreferredItemHeight"
-        android:paddingBottom="@dimen/list_item_padding"
-        android:paddingLeft="@dimen/activity_horizontal_margin"
-        android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/list_item_padding">
+        android:layout_height="wrap_content"
+        android:padding="15dp"
+        >
 
         <TextView
             android:id="@+id/type"
@@ -25,7 +23,7 @@
             android:layout_gravity="center_vertical"
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/tip"
-            android:textStyle="italic"
+            android:textColor="#000000"
             android:text="@{news.title}" />
 
         <android.support.v7.widget.AppCompatImageView
@@ -34,7 +32,6 @@
             android:layout_height="80dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
-            android:layout_gravity="center_vertical"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:scaleType="fitXY"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"

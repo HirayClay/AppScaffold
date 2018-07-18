@@ -10,7 +10,7 @@ import com.hiray.mvvm.model.AppDataBase
 import com.hiray.executor.AppExecutor
 import com.hiray.mvvm.model.RestApi
 import com.hiray.mvvm.model.RestApiHelper
-import com.hiray.tsl.HttpsConfigProvider
+import com.hiray.tsl.TslProvider
 import dagger.Module
 import dagger.Provides
 import java.util.concurrent.ExecutorService
@@ -34,8 +34,8 @@ class AppModule(var appContext: Application) {
 
     @Singleton
     @Provides
-    fun sslProvider(): HttpsConfigProvider {
-        return HttpsConfigProvider(appContext)
+    fun tslProvider(): TslProvider {
+        return TslProvider(appContext)
     }
 
     @Singleton
@@ -70,7 +70,7 @@ class AppModule(var appContext: Application) {
 
     @Singleton
     @Provides
-    fun provideRestApiHelper(gson: Gson, tslProvider: HttpsConfigProvider): RestApiHelper {
+    fun provideRestApiHelper(gson: Gson, tslProvider: TslProvider): RestApiHelper {
         return RestApiHelper(gson, tslProvider)
     }
 

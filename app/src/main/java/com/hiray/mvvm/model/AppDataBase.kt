@@ -14,7 +14,7 @@ abstract class AppDataBase : RoomDatabase() {
     abstract fun userDao(): UserDao
 
     companion object SOUL{
-        val DATABASE_NAME = "AppScaffoldDataBase"
+        private const val DATABASE_NAME = "AppScaffoldDataBase"
         @Volatile
         var INSTANCE: AppDataBase? = null
 

@@ -1,4 +1,4 @@
-package com.hiray.mvvm.model
+package com.hiray.util
 
 import android.os.Build
 import android.security.keystore.KeyGenParameterSpec

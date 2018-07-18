@@ -11,7 +11,7 @@ import javax.inject.Inject
 import javax.net.ssl.*
 
 
-class HttpsConfigProvider constructor(var appContext: Context) {
+class TslProvider constructor(var appContext: Context) {
 
     var trustManager: X509TrustManager
     var sslSocketFactory: SSLSocketFactory
