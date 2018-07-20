@@ -1,12 +1,9 @@
 package com.hiray
 
-import android.content.Context
-import android.databinding.DataBindingUtil
 import android.databinding.DataBindingUtil.setContentView
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.os.Environment
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
@@ -15,6 +12,8 @@ import android.util.Log
 import com.hiray.databinding.ActivityMainBinding
 import com.hiray.di.component.DaggerMainComponent
 import com.hiray.mvvm.viewmodel.MainViewModel
+import com.hiray.mvvm.viewmodel.NetWorkViewModel
+import com.hiray.ui.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -23,6 +22,9 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var mainViewModel: MainViewModel
 
+    @Inject
+    lateinit var networkViewModel: NetWorkViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerMainComponent.builder().appComponent((application as App).appComponent)
@@ -30,6 +32,9 @@ class MainActivity : AppCompatActivity() {
         val mainBinding = setContentView<ActivityMainBinding>(this, R.layout.activity_main)
         mainBinding.recyclerView.addItemDecoration(DividerItemDecoration())
         mainBinding.viewmodel = mainViewModel
+        mainBinding.networkViewModel = networkViewModel
+        mainBinding.includeLayout!!.networkViewModel = networkViewModel
+        mainBinding.includeLayout.executePendingBindings()
         mainBinding.executePendingBindings()
 
         val toggle = ActionBarDrawerToggle(
@@ -43,12 +48,10 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-    }
 
-    override fun onResume() {
-        super.onResume()
         mainViewModel.start()
     }
+
 
     inner class DividerItemDecoration : RecyclerView.ItemDecoration() {
         private val mDivider: Drawable? = ContextCompat.getDrawable(this@MainActivity, R.drawable.divider)

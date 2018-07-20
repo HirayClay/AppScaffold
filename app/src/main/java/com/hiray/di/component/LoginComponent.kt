@@ -1,6 +1,6 @@
 package com.hiray.di.component
 
-import com.hiray.LoginActivity
+import com.hiray.ui.LoginActivity
 import com.hiray.di.ActivityScope
 import com.hiray.di.module.AccountModule
 import dagger.Component

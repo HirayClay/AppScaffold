@@ -6,7 +6,7 @@ import android.arch.persistence.room.*
 data class User(
         @PrimaryKey
         var userName: String,
-        var favoriteFruit: String) {
+        var password: String) {
 }
 
 @Dao

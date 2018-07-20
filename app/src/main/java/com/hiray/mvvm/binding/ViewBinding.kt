@@ -12,11 +12,6 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 /**
  * class for attribute binding in xml or create two-way binding for custom views
  */
-
-@BindingMethods(
-//        BindingMethod(type = SmartRefreshLayout::class, attribute = "onLoadMore", method = "setOnLoadMoreListener"),
-        BindingMethod(type = SmartRefreshLayout::class, attribute = "isRefresh", method = "setOnRefreshListener")
-)
 class VB {
 
 }
@@ -29,34 +24,25 @@ fun bindImage(view: ImageView, imageUrl: String) = with(view) {
 }
 
 
-//@InverseBindingAdapter(attribute = "isRefreshing")
-//fun setRefreshing(smartRefreshLayout: SmartRefreshLayout): Boolean {
-//    return smartRefreshLayout.state == RefreshState.Refreshing
-//
-//
-//}
-//
-//@InverseBindingAdapter(attribute = "isLoadingMore")
-//fun setLoadingMore(smartRefreshLayout: SmartRefreshLayout): Boolean {
-//    return smartRefreshLayout.state == RefreshState.Loading
-//
-//}
-
 //针对SmartRefreshLayout
-@BindingAdapter("onRefresh", "onLoadMore", "isRefreshing", "isLoadingMore", requireAll = false)
+@BindingAdapter("onRefresh", "onLoadMore", "isRefreshing", "isLoadingMore", "refreshLoadMoreEnableOnNetChange", requireAll = false)
 fun bindSmartRefreshLayout(smartRefreshLayout: SmartRefreshLayout,
                            onRefreshListener: OnRefreshListener?, onLoadMoreListener: OnLoadMoreListener?,
                            isRefreshing: Boolean,
-                           isLoadingMore: Boolean) {
+                           isLoadingMore: Boolean, isConnected: Boolean) {
     if (onRefreshListener != null)
         smartRefreshLayout.setOnRefreshListener(onRefreshListener)
 
     if (onLoadMoreListener != null)
         smartRefreshLayout.setOnLoadMoreListener(onLoadMoreListener)
 
-    if (smartRefreshLayout.state == RefreshState.Refreshing &&!isRefreshing)
+    if (smartRefreshLayout.state == RefreshState.Refreshing && !isRefreshing)
         smartRefreshLayout.finishRefresh(true)
 
-    if (smartRefreshLayout.state == RefreshState.Loading &&!isLoadingMore)
+    if (smartRefreshLayout.state == RefreshState.Loading && !isLoadingMore)
         smartRefreshLayout.finishLoadMore(true)
+
+    smartRefreshLayout.setEnableLoadMore(isConnected)
+    smartRefreshLayout.setEnableRefresh(isConnected)
+
 }

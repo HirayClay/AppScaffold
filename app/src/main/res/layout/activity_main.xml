@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".MainActivity">
 
@@ -9,6 +10,11 @@
         <variable
             name="viewmodel"
             type="com.hiray.mvvm.viewmodel.MainViewModel" />
+
+        <variable
+            name="networkViewModel"
+            type="com.hiray.mvvm.viewmodel.NetWorkViewModel" />
+
     </data>
 
     <android.support.v4.widget.DrawerLayout
@@ -35,14 +41,21 @@
                     app:title="@string/app_name" />
             </android.support.design.widget.AppBarLayout>
 
+            <include
+                android:id="@+id/include_layout"
+                layout="@layout/network_header" />
+
             <com.scwang.smartrefresh.layout.SmartRefreshLayout
                 android:id="@+id/smartRefreshLayout"
+                refreshLoadMoreEnableOnNetChange="@{networkViewModel.connected}"
+                isLoadingMore="@{viewmodel.isLoadingMore}"
+                isRefreshing="@{viewmodel.refreshing}"
                 onLoadMore="@{()->viewmodel.loadMore()}"
                 onRefresh="@{()->viewmodel.start()}"
-                isRefreshing="@{viewmodel.refreshing}"
-                isLoadingMore="@{viewmodel.isLoadingMore}"
+
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                app:srlPrimaryColor="@color/colorPrimary">
 
                 <android.support.v7.widget.RecyclerView
                     android:id="@+id/recyclerView"
@@ -55,6 +68,11 @@
                     app:layout_anchor="@id/toolbar"
                     app:layout_anchorGravity="start|top"
                     tools:listItem="@layout/item_todo" />
+
+                <com.scwang.smartrefresh.layout.footer.BallPulseFooter
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:srlAnimatingColor="@color/colorPrimary" />
             </com.scwang.smartrefresh.layout.SmartRefreshLayout>
 
         </LinearLayout>

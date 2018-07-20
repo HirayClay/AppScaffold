@@ -1,15 +1,12 @@
 package com.hiray.mvvm.viewmodel
 
 import android.databinding.ObservableField
-import android.support.annotation.NonNull
 import android.text.TextUtils
-import com.hiray.CallBack
-import com.hiray.LoginActivity
+import com.hiray.aop.net.NetWorkRequired
+import com.hiray.ui.CallBack
 import com.hiray.di.ActivityScope
-import com.hiray.di.Concurrent
 import com.hiray.executor.AppExecutor
 import com.hiray.repository.IUserRepository
-import java.util.concurrent.ExecutorService
 import javax.inject.Inject
 
 @ActivityScope
@@ -19,7 +16,8 @@ class LoginViewModel @Inject constructor(
 
     lateinit var callBack: CallBack
 
-    fun saveUser() {
+    @NetWorkRequired
+    fun login() {
         val runnable = Runnable {
             val userName = name.get()
             val fruit = fruit.get()

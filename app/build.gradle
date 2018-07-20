@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply plugin: 'android-aspectjx'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -17,7 +18,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
         buildConfigField("int", "THREAD_POOL_SIZE", "4")
-        buildConfigField("String","BASE_URL","\"http://news-at.zhihu.com/api/2/news/\"")
+        buildConfigField("String", "BASE_URL", "\"http://news-at.zhihu.com/api/2/news/\"")
     }
     buildTypes {
         release {
@@ -33,3 +34,8 @@ android {
 
 //app dependencies
 apply from: file('../deps.gradle')
+
+
+dependencies {
+    implementation 'com.android.support.constraint:constraint-layout:+'
+}

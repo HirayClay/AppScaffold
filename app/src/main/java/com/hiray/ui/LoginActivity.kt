@@ -1,16 +1,16 @@
-package com.hiray
+package com.hiray.ui
 
 import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
-import android.databinding.DataBindingUtil
 import android.databinding.DataBindingUtil.setContentView
 import android.support.design.widget.Snackbar
 import android.widget.Toast.LENGTH_SHORT
+import com.hiray.App
+import com.hiray.R
 import com.hiray.databinding.ActivityLoginBinding
-import com.hiray.di.component.AppComponent
 import com.hiray.di.component.DaggerLoginComponent
 import com.hiray.mvvm.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -44,7 +44,7 @@ class LoginActivity : AppCompatActivity(), CallBack {
     }
 
     fun attemptLogin() {
-        loginViewModel.saveUser()
+        loginViewModel.login()
     }
 
 

@@ -6,15 +6,15 @@
     <data>
 
         <variable
-            name="news"
-            type="com.hiray.mvvm.model.entity.News" />
+            name="itemViewModel"
+            type="com.hiray.mvvm.viewmodel.NewsItemViewModel" />
     </data>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="15dp"
-        >
+        android:onClick="@{(v)->itemViewModel.onItemClick(v)}">
 
         <TextView
             android:id="@+id/type"
@@ -24,7 +24,7 @@
             android:layout_marginRight="5dp"
             android:layout_toLeftOf="@+id/tip"
             android:textColor="#000000"
-            android:text="@{news.title}" />
+            android:text="@{itemViewModel.title}" />
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/tip"
@@ -35,6 +35,6 @@
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:scaleType="fitXY"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"
-            bind:imageUrl="@{news.image}" />
+            bind:imageUrl="@{itemViewModel.image}" />
     </RelativeLayout>
 </layout>

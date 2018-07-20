@@ -1,6 +1,7 @@
 package com.hiray.mvvm.model.entity
 
 import android.arch.persistence.room.*
+import com.google.gson.annotations.SerializedName
 
 /*    title: "有哪些体育解说员「打脸」事件？",
     url: "http://news-at.zhihu.com/api/2/news/9689524",
@@ -10,10 +11,13 @@ import android.arch.persistence.room.*
     ga_prefix: "071317",
     id: 9689524*/
 @Entity(tableName = "News")
-data class News(var title: String, var url: String, var image: String?,
-                var images: List<String>?,
-                var shareUrl: String, var thumbnail: String, var gapPrefix: String,
+data class News(var title: String,
+                var url: String,
+                var image: String?,
+                @SerializedName("share_url") var shareUrl: String,
+                var thumbnail: String,
                 var id: Int) {
+
     override fun toString(): String {
         return super.toString()
     }
