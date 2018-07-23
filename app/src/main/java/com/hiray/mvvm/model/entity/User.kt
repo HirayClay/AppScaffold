@@ -15,13 +15,13 @@ interface UserDao {
     @Query("SELECT * FROM User WHERE userName = :userName")
     fun getUserByName(userName: String): User
 
-    @Query("SELECT * FROM USER")
+    @Query("SELECT * FROM User")
     fun getUsers(): List<User>
 
-    @Query("DELETE FROM USER")
+    @Query("DELETE FROM User")
     fun deleteAll()
 
-    @Query("DELETE FROM USER WHERE userName = :userName")
+    @Query("DELETE FROM User WHERE userName = :userName")
     fun deleteUser(userName: String)
 
     @Update

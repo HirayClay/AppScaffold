@@ -7,7 +7,7 @@ import javax.inject.Singleton
 
 interface IUserRepository {
 
-    fun getUser(userName: String): User
+    fun getUser(userName: String): User?
 
     fun deleteUser(userName: String)
     fun saveUser(userName: String, favoriteFruit: String)
@@ -22,7 +22,8 @@ open class UserRepository @Inject constructor(var userDataSource: UserDataSource
         userDataSource.deleteUser(userName)
     }
 
-    override fun getUser(userName: String): User {
+    //like login
+    override fun getUser(userName: String): User? {
         return userDataSource.getUser(userName)
     }
 

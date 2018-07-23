@@ -8,7 +8,7 @@ import android.content.Context
 import com.hiray.mvvm.model.entity.User
 import com.hiray.mvvm.model.entity.UserDao
 
-@Database(entities = [(User::class)], version = 1,exportSchema = false)
+@Database(entities = [(User::class)], version = 2,exportSchema = false)
 abstract class AppDataBase : RoomDatabase() {
 
     abstract fun userDao(): UserDao

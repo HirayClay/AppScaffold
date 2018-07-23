@@ -42,7 +42,7 @@
             </android.support.design.widget.AppBarLayout>
 
             <include
-                android:id="@+id/include_layout"
+                android:id="@+id/network_error_layout"
                 layout="@layout/network_header" />
 
             <com.scwang.smartrefresh.layout.SmartRefreshLayout

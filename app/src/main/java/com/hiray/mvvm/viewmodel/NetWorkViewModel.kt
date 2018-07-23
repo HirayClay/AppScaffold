@@ -11,21 +11,24 @@ import android.provider.Settings
 import android.util.Log
 import com.hiray.di.ActivityScope
 import javax.inject.Inject
+import javax.inject.Singleton
 
-@ActivityScope
 class NetWorkViewModel @Inject constructor(var appContext: Application) {
-    lateinit var connected: ObservableBoolean
-    var B = true
+    companion object {
+        lateinit var connected: ObservableBoolean
+    }
+
     private val connectivityManager: ConnectivityManager
         get() {
             val cm = appContext.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             return cm
         }
-    private val connectivityReceiver: BroadcastReceiver
+    private val connectivityReceiver: BroadcastReceiver?
         get() {
             var value: BroadcastReceiver = object : BroadcastReceiver() {
                 override fun onReceive(context: Context?, intent: Intent?) {
-                    var b = connectivityManager.activeNetworkInfo != null && connectivityManager.activeNetworkInfo.isConnected
+                    val b = connectivityManager.activeNetworkInfo != null
+                            && connectivityManager.activeNetworkInfo.isConnected
                     connected.set(b)
                 }
             }
@@ -34,14 +37,15 @@ class NetWorkViewModel @Inject constructor(var appContext: Application) {
 
     init {
         init()
-        Log.i("NetWorkViewModel", "INIT======================")
-        appContext.registerReceiver(connectivityReceiver, IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        var intentFilter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION)
+        appContext.registerReceiver(connectivityReceiver, intentFilter)
     }
 
 
     private fun init() {
         val cm = connectivityManager
-        connected = ObservableBoolean(cm.activeNetworkInfo != null && cm.activeNetworkInfo.isConnected)
+        connected = ObservableBoolean(cm.activeNetworkInfo != null
+                && cm.activeNetworkInfo.isConnected)
     }
 
     fun checkSetting() {

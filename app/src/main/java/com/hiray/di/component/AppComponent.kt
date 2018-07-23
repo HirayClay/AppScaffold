@@ -9,6 +9,7 @@ import com.hiray.mvvm.model.AppDataBase
 import com.hiray.di.module.AppModule
 import com.hiray.executor.AppExecutor
 import com.hiray.mvvm.model.RestApi
+import com.hiray.mvvm.viewmodel.NetWorkViewModel
 import dagger.Component
 import javax.inject.Singleton
 
@@ -25,7 +26,7 @@ interface AppComponent {
 
     fun appContext(): Context
 
-//    fun tslProvider():TslProvider
+    fun networkViewModel():NetWorkViewModel
 
     fun gson(): Gson
 

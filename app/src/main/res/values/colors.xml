@@ -5,4 +5,5 @@
     <color name="colorAccent">#70b872</color>
     <color name="error_hint_text_color">#F2A22B</color>
     <color name="light_background_color">#F2F1F1</color>
+    <color name="toast_text_color">#6E5336</color>
 </resources>

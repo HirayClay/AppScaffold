@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.Observable
 import android.databinding.ObservableField
 import android.view.View
+import com.hiray.aop.net.NetWorkRequired
 import com.hiray.mvvm.model.entity.News
 import com.hiray.ui.WebViewActivity
 
@@ -20,6 +21,7 @@ class NewsItemViewModel {
         url.set(news.shareUrl)
     }
 
+    @NetWorkRequired
     fun onItemClick(view: View) {
         WebViewActivity.load(view.context, url.get()!!)
     }

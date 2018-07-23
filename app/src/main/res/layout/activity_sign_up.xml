@@ -2,16 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ui.LoginActivity">
+    tools:context=".ui.SignUpActivity">
 
     <data>
 
         <variable
-            name="context"
-            type="com.hiray.ui.LoginActivity"/>
-        <variable
-            name="loginViewModel"
-            type="com.hiray.mvvm.viewmodel.LoginViewModel" />
+            name="viewmodel"
+            type="com.hiray.mvvm.viewmodel.SignUpViewModel" />
     </data>
 
     <LinearLayout
@@ -40,7 +37,7 @@
             android:paddingLeft="@dimen/activity_horizontal_margin"
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin"
-            tools:context=".ui.LoginActivity">
+            tools:context=".ui.SignUpActivity">
 
             <ProgressBar
                 android:id="@+id/login_progress"
@@ -70,10 +67,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="Name"
-                            android:inputType="textEmailAddress"
+                            android:inputType="text"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="@={loginViewModel.name}" />
+                            android:text="@={viewmodel.name}" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -82,17 +79,17 @@
                         android:layout_height="wrap_content">
 
                         <EditText
-                            android:id="@+id/favor_fruit"
+                            android:id="@+id/password"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Fruit"
+                            android:hint="password"
                             android:imeActionId="6"
                             android:imeActionLabel="@string/action_sign_up"
                             android:imeOptions="actionUnspecified"
                             android:inputType="textPassword"
                             android:maxLines="1"
                             android:singleLine="true"
-                            android:text="@={loginViewModel.password}" />
+                            android:text="@={viewmodel.password}" />
 
                     </android.support.design.widget.TextInputLayout>
 
@@ -102,18 +99,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
-                        android:onClick="@{()-> loginViewModel.login()}"
-                        android:text="@string/action_login_in"
+                        android:onClick="@{()->viewmodel.signUp()}"
+                        android:text="@string/action_sign_up"
                         android:textAllCaps="false"
                         android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right"
-                        android:onClick="@{()->loginViewModel.navigateSignUp(context)}"
-                        android:text="@string/action_sign_up"
-                        android:textColor="@color/colorPrimary" />
 
                 </LinearLayout>
             </ScrollView>

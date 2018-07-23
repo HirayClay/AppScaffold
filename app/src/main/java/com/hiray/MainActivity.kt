@@ -33,8 +33,8 @@ class MainActivity : AppCompatActivity() {
         mainBinding.recyclerView.addItemDecoration(DividerItemDecoration())
         mainBinding.viewmodel = mainViewModel
         mainBinding.networkViewModel = networkViewModel
-        mainBinding.includeLayout!!.networkViewModel = networkViewModel
-        mainBinding.includeLayout.executePendingBindings()
+        mainBinding.networkErrorLayout!!.networkViewModel = networkViewModel
+        mainBinding.networkErrorLayout.executePendingBindings()
         mainBinding.executePendingBindings()
 
         val toggle = ActionBarDrawerToggle(

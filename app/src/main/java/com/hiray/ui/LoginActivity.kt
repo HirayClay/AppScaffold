@@ -19,7 +19,7 @@ import javax.inject.Inject
 /**
  * A login screen that offers login via email/password.
  */
-class LoginActivity : AppCompatActivity(), CallBack {
+class LoginActivity : AppCompatActivity() {
 
     companion object {
         fun start(context: Context) {
@@ -38,26 +38,8 @@ class LoginActivity : AppCompatActivity(), CallBack {
                 .build()
                 .inject(this)
         val loginBinding = setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
-        loginViewModel.callBack = this
-        loginBinding.host = this
+        loginBinding.context = this
         loginBinding.loginViewModel = loginViewModel
     }
-
-    fun attemptLogin() {
-        loginViewModel.login()
-    }
-
-
-    override fun onLoginSuccess() {
-        Snackbar.make(root_view, resources.getString(R.string.login_success_msg), LENGTH_SHORT).show()
-    }
-
-    override fun showMsg(msg: String) {
-        Snackbar.make(root_view, msg, LENGTH_SHORT).show()
-    }
 }
 
-interface CallBack {
-    fun onLoginSuccess()
-    fun showMsg(msg: String)
-}

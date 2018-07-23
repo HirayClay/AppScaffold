@@ -54,7 +54,7 @@ class WebViewActivity : AppCompatActivity() {
         webView.webChromeClient = object : WebChromeClient() {
             override fun onProgressChanged(view: WebView?, newProgress: Int) {
                 super.onProgressChanged(view, newProgress)
-                if (newProgress >= 80)
+                if (newProgress >= 0)
                     webView.loadUrl(REMOVE_MOBILE_HEADER_JS_SCRIPT)
             }
 

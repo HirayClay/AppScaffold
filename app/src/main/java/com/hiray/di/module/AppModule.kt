@@ -10,6 +10,7 @@ import com.hiray.mvvm.model.AppDataBase
 import com.hiray.executor.AppExecutor
 import com.hiray.mvvm.model.RestApi
 import com.hiray.mvvm.model.RestApiHelper
+import com.hiray.mvvm.viewmodel.NetWorkViewModel
 import com.hiray.tsl.TslProvider
 import dagger.Module
 import dagger.Provides
@@ -46,6 +47,18 @@ class AppModule(var appContext: Application) {
 
     @Singleton
     @Provides
+    fun provideDatabase(): AppDataBase {
+        return AppDataBase.getInstance(appContext)
+    }
+
+    @Singleton
+    @Provides
+    fun provideNetWorkViewModel(): NetWorkViewModel {
+        return NetWorkViewModel(appContext)
+    }
+
+    @Singleton
+    @Provides
     fun provideGson(): Gson {
         return Gson()
     }
@@ -54,12 +67,6 @@ class AppModule(var appContext: Application) {
     @Provides
     fun provideAppExecutor(executor: ExecutorService): AppExecutor {
         return AppExecutor(executor)
-    }
-
-    @Singleton
-    @Provides
-    fun provideDatabase(): AppDataBase {
-        return AppDataBase.getInstance(appContext)
     }
 
     @Singleton
