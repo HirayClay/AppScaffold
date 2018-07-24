@@ -7,12 +7,14 @@ import android.os.Bundle
 
 import android.databinding.DataBindingUtil.setContentView
 import android.support.design.widget.Snackbar
+import android.util.Log
 import android.widget.Toast.LENGTH_SHORT
 import com.hiray.App
 import com.hiray.R
 import com.hiray.databinding.ActivityLoginBinding
 import com.hiray.di.component.DaggerLoginComponent
 import com.hiray.mvvm.viewmodel.LoginViewModel
+import com.hiray.mvvm.viewmodel.NetWorkViewModel
 import kotlinx.android.synthetic.main.activity_login.*
 import javax.inject.Inject
 
@@ -30,6 +32,9 @@ class LoginActivity : AppCompatActivity() {
     @Inject
     lateinit var loginViewModel: LoginViewModel
 
+    @Inject
+    lateinit var networkViewModel:NetWorkViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerLoginComponent
@@ -40,6 +45,8 @@ class LoginActivity : AppCompatActivity() {
         val loginBinding = setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         loginBinding.context = this
         loginBinding.loginViewModel = loginViewModel
+        Log.i("NetWorViewModel_Ref",networkViewModel.toString())
+
     }
 }
 

@@ -24,7 +24,7 @@
     <string name="navigation_drawer_close">Close Drawer</string>
     <string name="network_error_hint">网络未连接，请检查网络设置</string>
     <string name="login_failed">登录失败，请检查用户名和密码</string>
-    <string name="user_not_exist">用户不存在，好！小子，注册一个啊</string>
+    <string name="user_not_exist">用户不存在，好小子，注册一个啊</string>
     <string name="username_pwd_empty">用户名密码不能为空，系不系傻！</string>
     <string name="network_error_serious_hint">网络未连接，反省一下！</string>
     <string name="user_exist">用户名已存在，换个吧</string>

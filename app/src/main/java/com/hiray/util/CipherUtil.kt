@@ -19,7 +19,7 @@ class CipherUtil {
         val keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, ANDROID_KEY_STORE)
 
         val kpg = KeyPairGenerator.getInstance(
-                KeyProperties.KEY_ALGORITHM_EC, "AndroidKeyStore")
+                KeyProperties.KEY_ALGORITHM_EC, ANDROID_KEY_STORE)
         kpg.initialize(KeyGenParameterSpec.Builder(
                 alias,
                 KeyProperties.PURPOSE_SIGN or KeyProperties.PURPOSE_VERIFY)

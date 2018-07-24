@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         mainBinding.networkErrorLayout!!.networkViewModel = networkViewModel
         mainBinding.networkErrorLayout.executePendingBindings()
         mainBinding.executePendingBindings()
-
+        Log.i("NetWorViewModel_Ref",networkViewModel.toString())
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer_layout.addDrawerListener(toggle);
