@@ -11,6 +11,7 @@ import com.hiray.executor.AppExecutor
 import com.hiray.mvvm.model.RestApi
 import com.hiray.mvvm.model.RestApiHelper
 import com.hiray.mvvm.viewmodel.NetWorkViewModel
+import com.hiray.mvvm.viewmodel.UserViewModel
 import com.hiray.tsl.TslProvider
 import dagger.Module
 import dagger.Provides
@@ -55,6 +56,12 @@ class AppModule(var appContext: Application) {
     @Provides
     fun provideNetWorkViewModel(): NetWorkViewModel {
         return NetWorkViewModel(appContext)
+    }
+
+    @Singleton
+    @Provides
+    fun provideUserViewModel(): UserViewModel {
+        return UserViewModel()
     }
 
     @Singleton

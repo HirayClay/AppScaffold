@@ -1,7 +1,5 @@
 package com.hiray.mvvm.viewmodel
 
-import android.content.Context
-import android.database.Observable
 import android.databinding.ObservableField
 import android.view.View
 import com.hiray.aop.net.NetWorkRequired

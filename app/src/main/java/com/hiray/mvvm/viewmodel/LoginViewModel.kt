@@ -8,6 +8,7 @@ import android.text.TextUtils
 import com.hiray.R
 import com.hiray.aop.net.NetWorkRequired
 import com.hiray.di.ActivityScope
+import com.hiray.event.LoginEvent
 import com.hiray.executor.AppExecutor
 import com.hiray.mvvm.model.entity.User
 import com.hiray.repository.IUserRepository
@@ -19,13 +20,14 @@ import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
+import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
 @ActivityScope
 class LoginViewModel @Inject constructor(
         var appContext: Application,
         var userRepo: IUserRepository,
-        var appExecutor: AppExecutor) {
+        var activity: Activity?) {
 
     @NetWorkRequired
     fun login() {
@@ -49,6 +51,8 @@ class LoginViewModel @Inject constructor(
 
                         override fun onNext(user: User) {
                             Toasty.message(R.string.login_success_msg)
+                            EventBus.getDefault().post(LoginEvent(true,user.userName))
+                            activity!!.finish()
                         }
 
                         override fun onError(e: Throwable) {

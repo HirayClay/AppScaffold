@@ -46,7 +46,7 @@ class MainViewModel @Inject constructor(
                     date = it.date
                 })//save the date
                 .doOnComplete({ isRefreshing.set(false) })
-                .doOnError({isRefreshing.set(false)})
+                .doOnError({ isRefreshing.set(false) })
                 .flatMap { Observable.fromIterable(it.news) }// convert into single stream
                 .subscribe(object : Observer<News> {
                     override fun onComplete() {
@@ -96,6 +96,4 @@ class MainViewModel @Inject constructor(
 
                 })
     }
-
-
 }

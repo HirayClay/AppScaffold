@@ -13,6 +13,7 @@ import com.hiray.App
 import com.hiray.R
 import com.hiray.databinding.ActivityLoginBinding
 import com.hiray.di.component.DaggerLoginComponent
+import com.hiray.di.module.AccountModule
 import com.hiray.mvvm.viewmodel.LoginViewModel
 import com.hiray.mvvm.viewmodel.NetWorkViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -22,6 +23,7 @@ import javax.inject.Inject
  * A login screen that offers login via email/password.
  */
 class LoginActivity : AppCompatActivity() {
+    private val TAG = "LoginActivity"
 
     companion object {
         fun start(context: Context) {
@@ -33,19 +35,21 @@ class LoginActivity : AppCompatActivity() {
     lateinit var loginViewModel: LoginViewModel
 
     @Inject
-    lateinit var networkViewModel:NetWorkViewModel
+    lateinit var networkViewModel: NetWorkViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerLoginComponent
                 .builder()
+                .name(TAG)
                 .appComponent((application as App).appComponent)
+                .accountModule(AccountModule(this))
                 .build()
                 .inject(this)
         val loginBinding = setContentView<ActivityLoginBinding>(this, R.layout.activity_login)
         loginBinding.context = this
         loginBinding.loginViewModel = loginViewModel
-        Log.i("NetWorViewModel_Ref",networkViewModel.toString())
+        Log.i("NetWorViewModel_Ref", networkViewModel.toString())
 
     }
 }

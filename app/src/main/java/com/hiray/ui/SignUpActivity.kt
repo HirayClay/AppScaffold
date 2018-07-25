@@ -12,7 +12,7 @@ import com.hiray.mvvm.viewmodel.SignUpViewModel
 import javax.inject.Inject
 
 class SignUpActivity : AppCompatActivity() {
-
+    private val TAG = "SignUpActivity"
     @Inject
     lateinit var signupViewModel: SignUpViewModel
 
@@ -24,6 +24,7 @@ class SignUpActivity : AppCompatActivity() {
 
         DaggerLoginComponent.builder()
                 .appComponent((application as App).appComponent)
+                .name(TAG)
                 .build().inject(this)
         signupViewModel.activity = this
         binding.viewmodel = signupViewModel

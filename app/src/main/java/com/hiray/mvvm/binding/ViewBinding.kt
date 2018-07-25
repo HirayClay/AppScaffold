@@ -1,6 +1,7 @@
 package com.hiray.mvvm.binding
 
 import android.databinding.*
+import android.graphics.drawable.Drawable
 import android.widget.AbsListView
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -16,11 +17,16 @@ class VB {
 
 }
 
-@BindingAdapter("imageUrl")
-fun bindImage(view: ImageView, imageUrl: String) = with(view) {
-    Glide.with(this.context)
-            .load(imageUrl)
-            .into(this)
+@BindingAdapter("imageUrl", "src", requireAll = false)
+fun bindImage(view: ImageView, imageUrl: String?, drawable: Drawable?) = with(view) {
+    if (imageUrl != null)
+        Glide.with(this.context)
+                .load(imageUrl)
+                .into(this)
+
+    if (drawable != null)
+        this.setImageDrawable(drawable)
+
 }
 
 

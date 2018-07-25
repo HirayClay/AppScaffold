@@ -1,5 +1,6 @@
 package com.hiray
 
+import android.databinding.DataBindingUtil
 import android.databinding.DataBindingUtil.setContentView
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
@@ -10,9 +11,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import com.hiray.databinding.ActivityMainBinding
+import com.hiray.databinding.NavHeaderMainBinding
 import com.hiray.di.component.DaggerMainComponent
 import com.hiray.mvvm.viewmodel.MainViewModel
 import com.hiray.mvvm.viewmodel.NetWorkViewModel
+import com.hiray.mvvm.viewmodel.UserViewModel
 import com.hiray.ui.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -25,30 +28,32 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var networkViewModel: NetWorkViewModel
 
+    @Inject
+    lateinit var userviewModel: UserViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerMainComponent.builder().appComponent((application as App).appComponent)
                 .build().inject(this@MainActivity)
         val mainBinding = setContentView<ActivityMainBinding>(this, R.layout.activity_main)
+        var headerMainBinding = DataBindingUtil.inflate<NavHeaderMainBinding>(layoutInflater,
+                R.layout.nav_header_main, mainBinding.navView, false)
+
+        mainBinding.navView.addHeaderView(headerMainBinding.root)
+        userviewModel.context = this
+        headerMainBinding.userViewModel = userviewModel
+        headerMainBinding.executePendingBindings()
         mainBinding.recyclerView.addItemDecoration(DividerItemDecoration())
         mainBinding.viewmodel = mainViewModel
         mainBinding.networkViewModel = networkViewModel
         mainBinding.networkErrorLayout!!.networkViewModel = networkViewModel
         mainBinding.networkErrorLayout.executePendingBindings()
         mainBinding.executePendingBindings()
-        Log.i("NetWorViewModel_Ref",networkViewModel.toString())
+        Log.i("NetWorViewModel_Ref", networkViewModel.toString())
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer_layout.addDrawerListener(toggle);
         toggle.syncState()
-
-        nav_view.setNavigationItemSelectedListener {
-            when (it.itemId) {
-                R.id.menu_item_login -> LoginActivity.start(this)
-            }
-            true
-        }
-
         mainViewModel.start()
     }
 
@@ -73,6 +78,11 @@ class MainActivity : AppCompatActivity() {
                 mDivider.draw(c)
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        userviewModel.dispose()
     }
 
     interface UserLoginListener {
