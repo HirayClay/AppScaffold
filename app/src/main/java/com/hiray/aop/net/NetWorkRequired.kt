@@ -17,7 +17,7 @@ open class NetWorkAspect {
 
     private val TAG = "NetWorkAspectEx"
 
-    @Around("execution(@com.hiray.aop.net.NetWorkRequired * *(..))")
+    @Around("execution(@com.hiray.aop.net.NetWorkRequired  * *(..))")
     @Throws(Throwable::class)
     fun networkRequired(proceedingJoinPoint: ProceedingJoinPoint) {
         val signature = proceedingJoinPoint.signature as MethodSignature
