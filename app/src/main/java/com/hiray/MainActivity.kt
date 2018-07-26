@@ -10,14 +10,12 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.RecyclerView
 import android.util.Log
-import com.hiray.aop.DebugLog
 import com.hiray.databinding.ActivityMainBinding
 import com.hiray.databinding.NavHeaderMainBinding
 import com.hiray.di.component.DaggerMainComponent
 import com.hiray.mvvm.viewmodel.MainViewModel
 import com.hiray.mvvm.viewmodel.NetWorkViewModel
 import com.hiray.mvvm.viewmodel.UserViewModel
-import com.hiray.ui.LoginActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -32,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     @Inject
     lateinit var userviewModel: UserViewModel
 
-    @DebugLog
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         DaggerMainComponent.builder().appComponent((application as App).appComponent)
