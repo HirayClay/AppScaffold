@@ -31,6 +31,9 @@ android {
         enabled true
     }
 }
+aspectjx {
+
+}
 
 //app dependencies
 apply from: file('../deps.gradle')

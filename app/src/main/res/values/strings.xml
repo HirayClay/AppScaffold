@@ -20,4 +20,5 @@
     <string name="foo">Foo</string>
     <string name="bar">Bar</string>
     <string name="hi_msg">hi!</string>
+    <string name="network_ok">NetWorkOK</string>
 </resources>
